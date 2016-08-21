@@ -1,0 +1,1951 @@
+@charset "UTF-8";
+
+html {
+	box-sizing: border-box;
+	height: 100%;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+/* Disable select */
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+body {
+	font-size: 16px;
+	font-family: sans-serif;
+	background: #000204;
+	color: #fff;
+	height: 100%;
+	display: table;
+	margin: auto;
+	-webkit-text-size-adjust: none;
+	overflow: scroll;
+}
+
+a {
+	color: #d3f5f6;
+}
+
+a:visited {
+	color: #c3a5f6;
+}
+
+button {
+	padding: 0;
+	outline: 0;
+	margin: 0;
+	border: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background: transparent;
+}
+
+button:after,
+button:before {
+	-ms-interpolation-mode: nearest-neighbor; /*// IE 7+ (non-standard property)*/
+	image-rendering: -webkit-optimize-contrast; /*// Safari 6, UC Browser 9.9*/
+	image-rendering: -webkit-crisp-edges; /*// Safari 7+*/
+	image-rendering: -moz-crisp-edges; /*// Firefox 3.6+*/
+	image-rendering: -o-crisp-edges; /*// Opera 12*/
+	image-rendering: pixelated; /*// Chrome 41+ and Opera 26+*/
+}
+
+button,
+#parts_nav_top,
+#parts_nav_bottom {
+	font-family: 'Play', sans-serif;
+	font-weight: 400;
+	font-size: 13.5px;
+	text-shadow: 1px 1px 0 #000;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+	text-rendering: optimizeLegibility;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0
+}
+
+#main p {
+	font-family: Arial, sans-serif;
+	font-size: .875em;
+	line-height: 1.4;
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Quantico', sans-serif;
+	font-weight: 400;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+	font-size: 18px;
+}
+
+menu {
+	margin: 0;
+}
+
+#wrapper {
+	display: table-cell;
+	height: 100%;
+	width: 100%;
+}
+
+#main {
+	display: -webkit-flex;
+	display: flex;
+	position: relative;
+	margin: 4px auto;
+}
+
+#secondary {
+	/* for ie */
+	float: left;
+
+	width: 261px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
+}
+
+#primary {
+	display: table;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-flex-grow: 1;
+	flex-grow: 1;
+	-webkit-flex-shrink: 1;
+	flex-shrink: 1;
+	-webkit-flex-basis: auto;
+	flex-basis: auto;
+}
+
+#main_header,
+#stats_section .stats_section_heading,
+#parts_section .heading {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+#stats_section {
+}
+
+#stats_section .heading {
+	font-size: .9em;
+	margin-bottom: .2em;
+}
+
+#stats_section .heading:after {
+	content: ":";
+}
+
+#power_indicator,
+#heat_indicator,
+#currency {
+	border: 2px solid #334147;
+	border-bottom-width: 0;
+	position: relative;
+	font-size: .8em;
+	text-align: center;
+	padding: 5px 0;
+}
+
+#power_indicator,
+#heat_indicator {
+	padding: 8px 0;
+}
+
+#main #currency,
+#main #power_indicator,
+#main #heat_text {
+	position: relative;
+	z-index: 2;
+	color: #fff;
+	text-shadow:
+		1px 0 0 rgba(0, 0, 0, 1),
+		0 1px 0 rgba(0, 0, 0, 1),
+		-1px 0 0 rgba(0, 0, 0, 1),
+		0 -1px 0 rgba(0, 0, 0, 1),
+		1px 1px 0 rgba(0, 0, 0, 1),
+		-1px -1px 0 rgba(0, 0, 0, 1),
+		1px -1px 0 rgba(0, 0, 0, 1),
+		-1px 1px 0 rgba(0, 0, 0, 1)
+		;
+	font-family: monospace;
+	font-weight: bold;
+	line-height: 1.3;
+}
+
+#power_percentage,
+#heat_percentage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+}
+
+#currency {
+	background: #59c435;
+	border-color: #198405;
+	border-bottom-width: 2px;
+}
+
+#heat_wrapper,
+#heat_per_tick_wrapper,
+#power_text,
+#power_per_tick_wrapper,
+#exotic_particles_wrapper,
+#money_per_tick_wrapper,
+#money_wrapper {
+	display: block;
+	position: relative;
+	z-index: 2;
+}
+
+#heat_percentage {
+	background-color: #f00;
+}
+
+#power_percentage {
+	background-color: #33a5c6;
+	max-width: 100%;
+}
+
+#parts,
+#parts > menu,
+#parts > menu > menu,
+#reactor {
+	display: table;
+}
+
+#parts_section,
+#stats_section,
+#tooltip_nav,
+#reactor_upgrades {
+	border: 10px solid #eee;
+	border-image: url("../img/border_bg.png") 10 10 stretch;
+	margin: 2px 0 0 2px;
+	background: #76809b;
+	background-clip: padding-box;
+}
+
+#more_stats,
+#more_nav {
+	display: none;
+}
+
+#power_section,
+#heat {
+	margin-bottom: 8px;
+}
+
+#reduce_heat,
+#sell {
+	display: block;
+	width: 100%;
+}
+
+#tooltip_nav {
+	padding: 4px;
+	height: 148px;
+	width: 668px;
+	width: 100%;
+	display: table;
+	max-width: 100%;
+}
+
+#all_parts {
+	position: relative;
+}
+
+#parts {
+	display: block;
+	overflow-y: hidden;
+}
+
+/*#top,
+#bottom {
+	height: 30px;
+}*/
+
+#parts_section .part .image,
+#all_upgrades .image,
+#reactor .tile {
+	position: relative;
+	overflow: hidden;
+	white-space: nowrap;
+	text-indent: 64px;
+	vertical-align: top;
+}
+
+#parts_section .part .image,
+#reactor .tile {
+	height: 32px;
+	width: 32px;
+}
+
+#all_upgrades .image {
+	height: 100%;
+	width: 100%;
+}
+
+#parts_section .part {
+	background: transparent;
+	margin-right: 4px;
+	transition: all .1s linear;
+}
+
+#parts_section .part:hover,
+#parts_section .part:focus {
+	box-shadow: 0px 0px 2px 1px #76809b;
+	background: #76809b;
+}
+
+#parts_section .part:nth-child(6n) {
+	margin-right: 0;
+}
+
+#parts_section .part.unaffordable .image {
+	opacity: .5;
+}
+
+#parts_section .part.part_active {
+	box-shadow: 0px 0px 1px 1px #59c435;
+	background: #59c435;
+}
+
+#parts_section .part .image:after,
+#all_upgrades .image:before,
+#all_upgrades .image:after,
+#reactor .tile:after {
+	height: 32px;
+	width: 32px;
+	content: " ";
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+
+#parts_section .part:after {
+	top: 0;
+	left: 0;
+}
+
+  /* //////////////////////////
+ // Objectives
+////////////////////////// */
+
+#objectives_section {
+	display: table;
+	width: 100%;
+	max-width: 100%;
+}
+
+#objectives_header {
+	font-size: .9em;
+	display: table-cell;
+	padding-right: 5px;
+	width: 1px;
+	line-height: 1.7em;
+}
+
+#objectives_header:after {
+	content: ":";
+}
+
+#objectives_wrapper {
+	display: table-cell;
+	background: #222C38;
+	padding: 0 4px;
+	position: relative;
+	overflow: hidden;
+	height: 1.7em;
+	transition: all .3s linear;
+}
+
+#objectives_section.unloading #objectives_wrapper {
+	box-shadow: 0 0 4px 2px #0f0;
+	border: 4px solid #0f0;
+}
+
+#objectives_content {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	transition: left .9s ease-out;
+}
+
+#objectives_section.unloading #objectives_content {
+	left: -110%;
+	transition-delay: 2s;
+}
+
+#objectives_section.loading #objectives_content {
+	left: 110%;
+	transition: none;
+}
+
+#objectives_content p {
+	padding: 0 4px;
+	font-size: .9em;
+}
+
+#objective_title {
+	float: left;
+}
+
+#objective_reward {
+	float: right;
+	font-family: monospace;
+	width: 6em;
+}
+
+  /* //////////////////////////
+ // Reactor
+////////////////////////// */
+
+#reactor_header {
+	display: table;
+	width: 100%;
+}
+
+#reactor_stats {
+	margin-bottom: .75em;
+	float: left;
+	white-space: nowrap;
+}
+
+#reactor_stats .stat {
+	font-family: monospace;
+	font-size: 13px;
+	display: inline-block;
+	width: 102px;
+	line-height: 16px;
+	text-align: right;
+	position: relative;
+	background: #222C38;
+	padding-right: 2px;
+}
+
+#reactor_stats .stat:before {
+	width: 16px;
+	height: 16px;
+	content: " ";
+	position: absolute;
+	left: 0;
+}
+
+#stats_vent:before {
+	background-image: url("../img/icon_vent.gif");
+}
+
+#stats_inlet:before {
+	background-image: url("../img/icon_inlet.gif");
+}
+
+#stats_outlet:before {
+	background-image: url("../img/icon_outlet.gif");
+}
+
+#stats_heat:before {
+	background-image: url("../img/icon_heat.gif");
+}
+
+#stats_power:before {
+	background-image: url("../img/icon_power.gif");
+}
+
+#stats_cash:before {
+	background-image: url("../img/icon_cash.gif");
+}
+
+#reactor_section .heading {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+#reactor .row {
+	white-space: nowrap;
+}
+
+#reactor .tile {
+	background: transparent url("../img/tile.png") left top no-repeat;
+	display: none;
+}
+
+#reactor .tile.tile_active,
+#reactor .tile:focus {
+	box-shadow: 0px 0px 1px 1px #59c435;
+	background: #59c435;
+}
+
+#reactor .tile.enabled {
+	display: inline-block;
+}
+
+#reactor .tile.disabled:after {
+	opacity: .5;
+}
+
+#reactor .percent_wrapper_wrapper {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+
+#reactor .category_coolant_cell .percent_wrapper,
+#reactor .category_reflector .percent_wrapper,
+#reactor .category_vent .percent_wrapper,
+#reactor .category_capacitor .percent_wrapper,
+#reactor .category_heat_exchanger .percent_wrapper,
+#reactor .category_particle_accelerator .percent_wrapper,
+#reactor .category_cell .percent_wrapper {
+	border: 1px solid black;
+	background: black;
+	position: absolute;
+	bottom: 1px;
+	left: 1px;
+	right: 1px;
+}
+
+#reactor .tile.spent .percent_wrapper {
+	border-color: gray;
+	background: gray;
+}
+
+#reactor .category_coolant_cell .percent,
+#reactor .category_reflector .percent,
+#reactor .category_vent .percent,
+#reactor .category_capacitor .percent,
+#reactor .category_heat_exchanger .percent,
+#reactor .category_particle_accelerator .percent,
+#reactor .category_cell .percent {
+	text-indent: 64px;
+	white-space: nowrap;
+	height: 2px;
+}
+
+#reactor .disabled .percent_wrapper {
+	display: none;
+}
+
+#reactor .category_reflector .percent,
+#reactor .category_cell .percent {
+	background: #0f0;
+	width: 100%;
+}
+
+#reactor .category_coolant_cell .percent,
+#reactor .category_heat_exchanger .percent,
+#reactor .category_particle_accelerator .percent,
+#reactor .category_capacitor .percent,
+#reactor .category_vent .percent {
+	background: #f00;
+	width: 0;
+}
+
+@keyframes explosion {
+  0%   { background: url('../img/explosion_map.gif') 32px 0 no-repeat; } 
+  100% { background: url('../img/explosion_map.gif') -192px 0 no-repeat; }
+}
+
+#reactor .tile.exploding:after {
+  background: url('../img/explosion_map.gif') -192px 0 no-repeat;
+  animation: explosion .6s steps(7);
+}
+
+  /* //////////////////////////
+ // Navs
+////////////////////////// */
+
+#nav {
+	position: relative;
+	height: 100%;
+}
+
+#reactor_upgrades .explanitory button,
+#tooltip button,
+#nav button {
+	padding: 0 1em .1em;
+	margin: 0;
+	border: 8px solid #76809b;
+	border-image: url("../img/small_button_off.png") 8 8 stretch;
+	background-color: #76809b;
+	color: #fff;
+	outline: none;
+	transition: background-color .01s linear;
+	line-height: 1;
+}
+
+#nav button {
+	margin-right: .25em;
+}
+
+/* preload */
+body:before {
+	background:
+		url("../img/button_border_alt_active.png"),
+		url("../img/button_border_alt_down_active.png"),
+		url("../img/inner_border_alt_active.png"),
+		url("../img/inner_border_alt_down.png"),
+		url("../img/inner_border_alt_flip_active.png"),
+		url("../img/inner_border_alt_flip_down.png"),
+		url("../img/small_button_on.png"),
+		url("../img/small_button_down.png")
+	;
+	content: " ";
+	position: absolute;
+	visibility: hidden;
+}
+
+#reactor_upgrades .explanitory button:hover,
+#reactor_upgrades .explanitory button:focus,
+#tooltip button:hover,
+#tooltip button:focus,
+#nav button:hover,
+#nav button:focus {
+	border-image: url("../img/small_button_on.png") 8 8 stretch;
+	background-color: #91a1c8;
+}
+
+#main.touch #tooltip_text button {
+	display: inline-block;
+}
+
+#tooltip #tooltip_close {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	padding: 8px 9px 4px 4px;
+	border-right: 0;
+	border-top: 0;
+}
+
+#reactor_upgrades .explanitory button:active,
+#tooltip button:active,
+#nav button:active {
+	border-image: url("../img/small_button_down.png") 8 8 stretch;
+	background-color: #91a1c8;
+}
+
+#controls_nav {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#pages_nav {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#controls_nav button {
+	margin-bottom: 4px;
+	clear: both;
+	float: right;
+}
+
+#main.paused #pause,
+#unpause,
+#main.auto_sell_disabled #disable_auto_sell,
+#main.auto_buy_disabled #disable_auto_buy,
+#enable_auto_sell,
+#enable_auto_buy {
+	display: none !important;
+}
+
+#main.paused #unpause,
+#main.auto_sell_disabled #enable_auto_sell,
+#main.auto_buy_disabled #enable_auto_buy {
+	display: inline-block !important;
+}
+
+  /* //////////////////////////
+ // Pages
+////////////////////////// */
+
+#main .has_spoiler .spoiler {
+	display: none;
+}
+
+#main .has_spoiler.show .spoiler {
+	display: block;
+}
+
+#main .page {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	left: 0;
+	top: 0;
+}
+
+#main .page .heading {
+	margin-bottom: .75em;
+}
+
+#main .page .subpanel {
+	padding: .5em;
+}
+
+#main .showing {
+	position: static;
+}
+
+#experimental_upgrades_section,
+#upgrades_section {
+}
+
+#experimental_upgrades_section .heading,
+#upgrades_section .heading {
+	margin-bottom: 1em;
+}
+
+#experimental_upgrades_section > div,
+#experimental_upgrades > div,
+#upgrades > div {
+	margin-bottom: 1em;
+}
+
+#reboot_section,
+#refund_section {
+	max-width: 37em;
+	margin: 2em auto 0;
+	text-align: center;
+}
+
+#reactor_upgrades .explanitory button {
+	margin-bottom: 1em;
+}
+
+  /* //////////////////////////
+ // Cells
+////////////////////////// */
+
+#parts_section .cells {
+}
+
+#parts_section .cells .part,
+#parts_section .cells .part:nth-child(5n) {
+	margin-right: 40px;
+	margin-left: 10px;
+}
+
+#parts_section .cells .part:nth-child(3n) {
+	margin-right: 0;
+}
+
+#parts_section .locked + .locked {
+	display: none;
+}
+
+.part .description {
+	position: absolute;
+	clip: rect(1px 1px 1px 1px);
+}
+
+#reactor_section {
+	/* for ie */
+	display: table;
+}
+
+#reactor_wrapper {
+	background: #5C6166;
+	float: left;
+}
+
+#reactor .tile.spent:after {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+/* uranium */
+#parts .part.part_uranium1 .image:after,
+#reactor .tile.part_uranium1:after,
+#upgrades .uranium .image:after,
+#forceful_fusion .image:after {
+	background-image: url("../img/cell_1_1.gif");
+}
+
+#parts .part.part_uranium2 .image:after,
+#reactor .tile.part_uranium2:after {
+	background-image: url("../img/cell_1_2.gif");
+}
+
+#parts .part.part_uranium3 .image:after,
+#reactor .tile.part_uranium3:after {
+	background-image: url("../img/cell_1_4.gif");
+}
+
+/* plutonium */
+#parts .part.part_plutonium1 .image:after,
+#reactor .tile.part_plutonium1:after,
+#upgrades .plutonium .image:after {
+	background-image: url("../img/cell_2_1.gif");
+}
+
+#parts .part.part_plutonium2 .image:after,
+#reactor .tile.part_plutonium2:after {
+	background-image: url("../img/cell_2_2.gif");
+}
+
+#parts .part.part_plutonium3 .image:after,
+#reactor .tile.part_plutonium3:after {
+	background-image: url("../img/cell_2_4.gif");
+}
+
+/* thorium */
+#parts .part.part_thorium1 .image:after,
+#reactor .tile.part_thorium1:after,
+#upgrades .thorium .image:after {
+	background-image: url("../img/cell_3_1.gif");
+}
+
+#parts .part.part_thorium2 .image:after,
+#reactor .tile.part_thorium2:after {
+	background-image: url("../img/cell_3_2.gif");
+}
+
+#parts .part.part_thorium3 .image:after,
+#reactor .tile.part_thorium3:after {
+	background-image: url("../img/cell_3_4.gif");
+}
+
+/* seaborgium */
+#parts .part.part_seaborgium1 .image:after,
+#reactor .tile.part_seaborgium1:after,
+#upgrades .seaborgium .image:after {
+	background-image: url("../img/cell_4_1.gif");
+}
+
+#parts .part.part_seaborgium2 .image:after,
+#reactor .tile.part_seaborgium2:after {
+	background-image: url("../img/cell_4_2.gif");
+}
+
+#parts .part.part_seaborgium3 .image:after,
+#reactor .tile.part_seaborgium3:after {
+	background-image: url("../img/cell_4_4.gif");
+}
+
+/* dolorium */
+#parts .part.part_dolorium1 .image:after,
+#reactor .tile.part_dolorium1:after,
+#upgrades .dolorium .image:after {
+	background-image: url("../img/cell_5_1.gif");
+}
+
+#parts .part.part_dolorium2 .image:after,
+#experimental_upgrades #infused_cells .image:after,
+#reactor .tile.part_dolorium2:after {
+	background-image: url("../img/cell_5_2.gif");
+}
+
+#parts .part.part_dolorium3 .image:after,
+#reactor .tile.part_dolorium3:after {
+	background-image: url("../img/cell_5_4.gif");
+}
+
+/* nefastium */
+#parts .part.part_nefastium1 .image:after,
+#reactor .tile.part_nefastium1:after,
+#upgrades .nefastium .image:after {
+	background-image: url("../img/cell_6_1.gif");
+}
+
+#parts .part.part_nefastium2 .image:after,
+#reactor .tile.part_nefastium2:after {
+	background-image: url("../img/cell_6_2.gif");
+}
+
+#parts .part.part_nefastium3 .image:after,
+#experimental_upgrades #unleashed_cells .image:after,
+#reactor .tile.part_nefastium3:after {
+	background-image: url("../img/cell_6_4.gif");
+}
+
+/* protium */
+#parts_section .part.part_protium1 .image:after,
+#reactor .tile.part_protium1:after,
+#experimental_upgrades #protium_cells .image:after,
+#upgrades .protium .image:after {
+	background-image: url("../img/xcell_1_1.gif");
+}
+
+#parts_section .part.part_protium2 .image:after,
+#experimental_upgrades #unstable_protium .image:after,
+#reactor .tile.part_protium2:after {
+	background-image: url("../img/xcell_1_2.gif");
+}
+
+#parts_section .part.part_protium3 .image:after,
+#reactor .tile.part_protium3:after {
+	background-image: url("../img/xcell_1_4.gif");
+}
+
+  /* //////////////////////////
+ // Reflectors
+////////////////////////// */
+
+#improved_neutron_reflection .image:after,
+#improved_reflector_density .image:after,
+#perpetual_reflectors .image:after,
+#parts .part.part_reflector1 .image:after,
+#reactor .tile.part_reflector1:after {
+	background-image: url("../img/reflector_1.gif");
+}
+
+#parts .part.part_reflector2 .image:after,
+#reactor .tile.part_reflector2:after {
+	background-image: url("../img/reflector_2.gif");
+}
+
+#parts .part.part_reflector3 .image:after,
+#reactor .tile.part_reflector3:after {
+	background-image: url("../img/reflector_3.gif");
+}
+
+#parts .part.part_reflector4 .image:after,
+#reactor .tile.part_reflector4:after {
+	background-image: url("../img/reflector_4.gif");
+}
+
+#parts .part.part_reflector5 .image:after,
+#experimental_upgrades #full_spectrum_reflectors .image:after,
+#reactor .tile.part_reflector5:after {
+	background-image: url("../img/reflector_5.gif");
+}
+
+#parts .part.part_reflector6 .image:after,
+#experimental_upgrades #heat_reflection .image:after,
+#reactor .tile.part_reflector6:after {
+	background-image: url("../img/reflector_6.gif");
+}
+
+  /* //////////////////////////
+ // Capacitors
+////////////////////////// */
+
+#parts .part.part_capacitor1 .image:after,
+#reactor .tile.part_capacitor1:after,
+#perpetual_capacitors .image:after,
+#active_venting .image:after,
+#active_exchangers .image:after,
+#improved_power_lines .image:after,
+#improved_wiring .image:after {
+	background-image: url("../img/capacitor_1.gif");
+}
+
+#parts .part.part_capacitor2 .image:after,
+#reactor .tile.part_capacitor2:after{
+	background-image: url("../img/capacitor_2.gif");
+}
+
+#parts .part.part_capacitor3 .image:after,
+#reactor .tile.part_capacitor3:after{
+	background-image: url("../img/capacitor_3.gif");
+}
+
+#parts .part.part_capacitor4 .image:after,
+#reactor .tile.part_capacitor4:after{
+	background-image: url("../img/capacitor_4.gif");
+}
+
+#parts .part.part_capacitor5 .image:after,
+#experimental_upgrades #quantum_buffering .image:after,
+#reactor .tile.part_capacitor5:after {
+	background-image: url("../img/capacitor_5.gif");
+}
+
+#parts .part.part_capacitor6 .image:after,
+#experimental_upgrades #experimental_capacitance .image:after,
+#reactor .tile.part_capacitor6:after{
+	background-image: url("../img/capacitor_6.gif");
+}
+
+  /* //////////////////////////
+ // Cooling
+////////////////////////// */
+
+/* Vents */
+#parts .part.part_vent1 .image:after,
+#reactor .tile.part_vent1:after,
+#improved_heat_vents .image:after {
+	background-image: url("../img/vent_1.gif");
+}
+
+#parts .part.part_vent2 .image:after,
+#reactor .tile.part_vent2:after {
+	background-image: url("../img/vent_2.gif");
+}
+
+#parts .part.part_vent3 .image:after,
+#reactor .tile.part_vent3:after {
+	background-image: url("../img/vent_3.gif");
+}
+
+#parts .part.part_vent4 .image:after,
+#reactor .tile.part_vent4:after {
+	background-image: url("../img/vent_4.gif");
+}
+
+#parts .part.part_vent5 .image:after,
+#experimental_upgrades #fluid_hyperdynamics .image:after,
+#reactor .tile.part_vent5:after {
+	background-image: url("../img/vent_5.gif");
+}
+
+#parts .part.part_vent6 .image:after,
+#experimental_upgrades #vortex_cooling .image:after,
+#reactor .tile.part_vent6:after {
+	background-image: url("../img/vent_6.gif");
+}
+
+/* Heat Exchangers */
+#parts .part.part_heat_exchanger1 .image:after,
+#reactor .tile.part_heat_exchanger1:after,
+#improved_heat_exchangers .image:after {
+	background-image: url("../img/exchanger_1.gif");
+}
+
+#parts .part.part_heat_exchanger2 .image:after,
+#reactor .tile.part_heat_exchanger2:after {
+	background-image: url("../img/exchanger_2.gif");
+}
+
+#parts .part.part_heat_exchanger3 .image:after,
+#reactor .tile.part_heat_exchanger3:after {
+	background-image: url("../img/exchanger_3.gif");
+}
+
+#parts .part.part_heat_exchanger4 .image:after,
+#reactor .tile.part_heat_exchanger4:after {
+	background-image: url("../img/exchanger_4.gif");
+}
+
+#parts .part.part_heat_exchanger5 .image:after,
+#experimental_upgrades #fractal_piping .image:after,
+#reactor .tile.part_heat_exchanger5:after {
+	background-image: url("../img/exchanger_5.gif");
+}
+
+#parts .part.part_heat_exchanger6 .image:after,
+#experimental_upgrades #underground_heat_extraction .image:after,
+#reactor .tile.part_heat_exchanger6:after {
+	background-image: url("../img/exchanger_6.gif");
+}
+
+/* Heat Inlets */
+#parts .part.part_heat_inlet1 .image:after,
+#reactor .tile.part_heat_inlet1:after {
+	background-image: url("../img/inlet_1.gif");
+}
+
+#parts .part.part_heat_inlet2 .image:after,
+#reactor .tile.part_heat_inlet2:after {
+	background-image: url("../img/inlet_2.gif");
+}
+
+#parts .part.part_heat_inlet3 .image:after,
+#reactor .tile.part_heat_inlet3:after {
+	background-image: url("../img/inlet_3.gif");
+}
+
+#parts .part.part_heat_inlet4 .image:after,
+#reactor .tile.part_heat_inlet4:after {
+	background-image: url("../img/inlet_4.gif");
+}
+
+#parts .part.part_heat_inlet5 .image:after,
+#reactor .tile.part_heat_inlet5:after {
+	background-image: url("../img/inlet_5.gif");
+}
+
+#parts .part.part_heat_inlet6 .image:after,
+#experimental_upgrades #vortex_extraction .image:after,
+#reactor .tile.part_heat_inlet6:after {
+	background-image: url("../img/inlet_6.gif");
+}
+
+/* Heat Outlets */
+#parts .part.part_heat_outlet1 .image:after,
+#reactor .tile.part_heat_outlet1:after {
+	background-image: url("../img/outlet_1.gif");
+}
+
+#parts .part.part_heat_outlet2 .image:after,
+#reactor .tile.part_heat_outlet2:after {
+	background-image: url("../img/outlet_2.gif");
+}
+
+#parts .part.part_heat_outlet3 .image:after,
+#reactor .tile.part_heat_outlet3:after {
+	background-image: url("../img/outlet_3.gif");
+}
+
+#parts .part.part_heat_outlet4 .image:after,
+#reactor .tile.part_heat_outlet4:after {
+	background-image: url("../img/outlet_4.gif");
+}
+
+#parts .part.part_heat_outlet5 .image:after,
+#reactor .tile.part_heat_outlet5:after {
+	background-image: url("../img/outlet_5.gif");
+}
+
+#parts .part.part_heat_outlet6 .image:after,
+#experimental_upgrades #explosive_ejection .image:after,
+#reactor .tile.part_heat_outlet6:after {
+	background-image: url("../img/outlet_6.gif");
+}
+
+/* Coolant Cells */
+#improved_coolant_cells .image:after,
+#parts .part.part_coolant_cell1 .image:after,
+#reactor .tile.part_coolant_cell1:after {
+	background-image: url("../img/coolant_1.gif");
+}
+
+#parts .part.part_coolant_cell2 .image:after,
+#reactor .tile.part_coolant_cell2:after {
+	background-image: url("../img/coolant_2.gif");
+}
+
+#parts .part.part_coolant_cell3 .image:after,
+#reactor .tile.part_coolant_cell3:after {
+	background-image: url("../img/coolant_3.gif");
+}
+
+#parts .part.part_coolant_cell4 .image:after,
+#reactor .tile.part_coolant_cell4:after {
+	background-image: url("../img/coolant_4.gif");
+}
+
+#parts .part.part_coolant_cell5 .image:after,
+#experimental_upgrades #ultracryonics .image:after,
+#reactor .tile.part_coolant_cell5:after {
+	background-image: url("../img/coolant_5.gif");
+}
+
+#parts .part.part_coolant_cell6 .image:after,
+#experimental_upgrades #thermionic_conversion .image:after,
+#reactor .tile.part_coolant_cell6:after {
+	background-image: url("../img/coolant_6.gif");
+}
+
+/* Platings */
+#parts .part.part_reactor_plating1 .image:after,
+#reactor .tile.part_reactor_plating1:after,
+#improved_heatsinks .image:after,
+#reinforced_heat_exchangers .image:after,
+#upgrades #improved_piping .image:after,
+#upgrades #improved_alloys .image:after {
+	background-image: url("../img/plating_1.gif");
+}
+
+#parts .part.part_reactor_plating2 .image:after,
+#reactor .tile.part_reactor_plating2:after {
+	background-image: url("../img/plating_2.gif");
+}
+
+#parts .part.part_reactor_plating3 .image:after,
+#reactor .tile.part_reactor_plating3:after {
+	background-image: url("../img/plating_3.gif");
+}
+
+#parts .part.part_reactor_plating4 .image:after,
+#reactor .tile.part_reactor_plating4:after {
+	background-image: url("../img/plating_4.gif");
+}
+
+#parts .part.part_reactor_plating5 .image:after,
+#experimental_upgrades #phlembotinum_core .image:after,
+#reactor .tile.part_reactor_plating5:after {
+	background-image: url("../img/plating_5.gif");
+}
+
+#parts .part.part_reactor_plating6 .image:after,
+#experimental_upgrades #micro_capacitance .image:after,
+#reactor .tile.part_reactor_plating6:after {
+	background-image: url("../img/plating_6.gif");
+}
+
+/* Particle Accelerators */
+#parts .part.part_particle_accelerator1 .image:after,
+#upgrades #improved_particle_accelerators .image:after,
+#experimental_upgrades #improved_particle_accelerators1 .image:after,
+#reactor .tile.part_particle_accelerator1:after {
+	background-image: url("../img/accelerator_1.gif");
+}
+
+#parts .part.part_particle_accelerator2 .image:after,
+#experimental_upgrades #improved_particle_accelerators2 .image:after,
+#reactor .tile.part_particle_accelerator2:after {
+	background-image: url("../img/accelerator_2.gif");
+}
+
+#parts .part.part_particle_accelerator3 .image:after,
+#experimental_upgrades #improved_particle_accelerators3 .image:after,
+#reactor .tile.part_particle_accelerator3:after {
+	background-image: url("../img/accelerator_3.gif");
+}
+
+#parts .part.part_particle_accelerator4 .image:after,
+#experimental_upgrades #improved_particle_accelerators4 .image:after,
+#reactor .tile.part_particle_accelerator4:after {
+	background-image: url("../img/accelerator_4.gif");
+}
+
+#parts .part.part_particle_accelerator5 .image:after,
+#experimental_upgrades #improved_particle_accelerators5 .image:after,
+#reactor .tile.part_particle_accelerator5:after {
+	background-image: url("../img/accelerator_5.gif");
+}
+
+#parts .part.part_particle_accelerator6 .image:after,
+#experimental_upgrades #improved_particle_accelerators6 .image:after,
+#experimental_upgrades #singularity_harnessing .image:after,
+#reactor .tile.part_particle_accelerator6:after {
+	background-image: url("../img/accelerator_6.gif");
+}
+
+/* Other */
+
+#experimental_upgrades #laboratory .image:after {
+	background-image: url("../img/lab.gif");
+}
+
+  /* //////////////////////////
+ // Upgrades
+////////////////////////// */
+
+#all_upgrades .upgrade {
+	width: 2.5em;
+	height: 2.5em;
+	display: inline-block;
+	font-size: inherit;
+	vertical-align: top;
+}
+
+#all_upgrades .upgrade .description {
+	position: absolute;
+	clip: rect(1px 1px 1px 1px);
+}
+
+#all_upgrades .image:before {
+	top: auto;
+	bottom: 0;
+}
+
+#all_upgrades .image:after {
+	left: 50%;
+	margin-left: -16px;
+	top: 50%;
+	margin-top: -16px;
+}
+
+/* Time */
+#improved_reflector_density .image:before,
+#all_upgrades .cell_tick .image:before {
+	background-image: url("../img/status_time.gif");
+	z-index: 2;
+}
+
+/* Plus */
+#improved_heat_exchangers .image:before,
+#improved_heat_vents .image:before,
+#improved_coolant_cells .image:before,
+#forceful_fusion .image:before,
+#improved_wiring .image:before,
+#improved_alloys .image:before {
+	background-image: url("../img/status_plus.gif");
+	z-index: 2;
+}
+
+/* Bolt */
+#improved_neutron_reflection .image:before,
+#improved_power_lines .image:before,
+#improved_piping .image:before,
+#all_upgrades .cell_power .image:before {
+	background-image: url("../img/status_bolt.gif");
+	z-index: 2;
+}
+
+/* Infinity */
+#perpetual_capacitors .image:before,
+#perpetual_reflectors .image:before,
+#all_upgrades .cell_perpetual .image:before {
+	background-image: url("../img/status_infinity.gif");
+	z-index: 2;
+}
+
+#all_upgrades .upgrade .levels {
+	position: absolute;
+	z-index: 3;
+	text-indent: 0;
+	right: 2px;
+	bottom: 2px;
+	color: #fff;
+	font-size: 14px;
+	text-shadow:
+		1px 0 0 rgba(0, 0, 0, 1),
+		0 1px 0 rgba(0, 0, 0, 1),
+		-1px 0 0 rgba(0, 0, 0, 1),
+		0 -1px 0 rgba(0, 0, 0, 1),
+		1px 1px 0 rgba(0, 0, 0, 1),
+		-1px -1px 0 rgba(0, 0, 0, 1),
+		1px -1px 0 rgba(0, 0, 0, 1),
+		-1px 1px 0 rgba(0, 0, 0, 1)
+		;
+}
+
+/*#all_upgrades .upgrade .image:before {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	content: " ";
+	background: url("../img/sprites.png") left top no-repeat;
+	width: 32px;
+	height: 32px;
+}*/
+
+#chronometer.upgrade .image:after {
+	background-image: url("../img/upgrade_flux.gif");
+}
+
+#heat_control_operator.upgrade .image:after {
+	background-image: url("../img/upgrade_computer.gif");
+}
+
+#expand_reactor_cols.upgrade .image:after {
+	background-image: url("../img/upgrade_cols.gif");
+}
+
+#expand_reactor_rows.upgrade .image:after {
+	background-image: url("../img/upgrade_rows.gif");
+}
+
+#all_upgrades .unaffordable .image {
+	opacity: .5;
+}
+
+  /* //////////////////////////
+ // Tooltips
+////////////////////////// */
+
+#tooltip {
+	display: none;
+	height: 100%;
+	-webkit-flex-grow: 1;
+	flex-grow: 1;
+
+	width: auto;
+	max-width: 100%;
+}
+
+.touch #tooltip {
+	position: relative;
+}
+
+#tooltip_text button {
+	display: none;
+}
+
+#tooltip > :first-child {
+	margin-right: .6em;
+}
+
+#tooltip_text {
+	padding: .2em .3em 0;
+	text-align: center;
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+.touch #tooltip_info {
+	padding-right: 20px;
+	text-align: left;
+}
+
+#tooltip_data {
+	width: 13em;
+	text-align: left;
+	padding: 0 .3em;
+}
+
+#tooltip_name {
+	margin-bottom: .5em;
+}
+
+.touch #tooltip_name {
+	margin-bottom: 0;
+	display: inline;
+}
+
+.touch #tooltip_name:after {
+	content: ":";
+}
+
+#tooltip_description {
+	/*margin-bottom: .5em;*/
+}
+
+.touch #tooltip_description {
+	display: inline;
+}
+
+#tooltip_cost:before {
+	content: "Cost: ";
+}
+
+#main.tooltip_showing #tooltip {
+	/* for ie */
+	display: block;
+
+	display: -webkit-flex;
+	display: flex;
+}
+
+#main.tooltip_showing #nav {
+	display: none;
+}
+
+#tooltip_controls {
+	display: none;
+}
+
+.touch #tooltip_controls {
+	display: block;
+	margin-top: 10px;
+}
+
+  /* //////////////////////////
+ // Debug
+////////////////////////// */
+#reactor .heat {
+	color: red;
+	pointer-events: none;
+	font-size: 9px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	text-indent: 0;
+	z-index: 2;
+}
+
+#reactor .power {
+	color: green;
+	pointer-events: none;
+	font-size: 9px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	text-indent: 0;
+	z-index: 2;
+}
+
+.debug #reactor .tile {
+	font-size: 1px;
+}
+
+  /* //////////////////////////
+ // UI
+////////////////////////// */
+#main:before {
+	content: " ";
+	border: 10px solid #30424b;
+	border-image: url("../img/connector_border.png") 10 10 stretch;
+	background-color: #30424b;
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	right: 4px;
+	bottom: 4px;
+	background-clip: padding-box;
+	z-index: -1;
+}
+
+#main .panel_holder:first-child .panel:first-child {
+	border: 12px solid #485667;
+	border-image: url("../img/panel_border_first_first.png") 12 12 stretch;
+	background-color: #485667;
+	margin: 0 3px 0 0;
+	padding: 6px 0 2px 6px;
+}
+
+#main .panel_holder:first-child .panel:last-child {
+	border: 12px solid #485667;
+	border-image: url("../img/panel_border_first_last.png") 12 12 stretch;
+	background-color: #485667;
+	margin: 4px 3px 0 0;
+	padding: 2px 0 6px 6px;
+	-webkit-flex: 1;
+	/* This breaks ie11 all to hell so...
+	flex: 1; */
+}
+
+#main .panel_holder:last-child .panel {
+	border: 12px solid #485667;
+	border-image: url("../img/panel_border_last_middle.png") 12 12 stretch;
+	background-color: #485667;
+	margin: 0 0 4px 0;
+	padding: 2px 6px 2px 2px;
+}
+
+#main .panel_holder:last-child .panel:first-child {
+	border-image: url("../img/panel_border_last_first.png") 12 12 stretch;
+	margin: 0 0 4px 0;
+	padding: 6px 4px 2px 2px;
+}
+
+#main .panel_holder:last-child .panel:last-child {
+	border-image: url("../img/panel_border_last_last.png") 12 12 stretch;
+	padding: 0 6px 6px 2px;
+	margin: 0;
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+#reactor_stats .stat,
+#main .subpanel {
+	border: 4px solid #222C38;
+	border-image: url("../img/inner_border.png") 4 4 stretch;
+}
+
+/*#parts_nav_top,
+#parts_nav_bottom {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	left: 0;
+	color: #fff;
+}
+
+#parts_nav_top {
+	border: 8px solid #eee;
+	border-image: url("../img/inner_border_alt.png") 8 8 stretch;
+	background-color: #76809b;
+	width: 100%;
+	top: 0;
+}
+
+#parts_nav_top:hover,
+#parts_nav_top:focus {
+	border-image: url("../img/inner_border_alt_active.png") 8 8 stretch;
+	background-color: #96a0bb;
+}
+
+#parts_nav_top:active {
+	border-image: url("../img/inner_border_alt_down.png") 8 8 stretch;
+	background-color: #96a0bb;
+}*/
+
+#stats_section button {
+	border: 8px solid #76809b;
+	border-image: url("../img/inner_border_alt_flip.png") 8 8 stretch;
+	background-color: #76809b;
+	bottom: 0;
+	color: #fff;
+}
+
+#stats_section button:hover,
+#stats_section button:focus {
+	border-image: url("../img/inner_border_alt_flip_active.png") 8 8 stretch;
+	background-color: #96a0bb;
+}
+
+#stats_section button:active {
+	border-image: url("../img/inner_border_alt_flip_down.png") 8 8 stretch;
+	background-color: #96a0bb;
+}
+
+@media all and (max-width: 938px) {
+	#wrapper {
+		display: block;
+		height: auto;
+	}
+
+	#main {
+		display: block;
+		padding-top: 52px;
+	}
+
+	#main:before {
+		display: none;
+	}
+
+	#secondary {
+		width: auto;
+		margin-bottom: 4px;
+		float: none;
+	}
+
+	#stats_section {
+		height: auto;
+	}
+
+	#heat,
+	#power_section,
+	#currency {
+		max-width: 228px;
+		float: left;
+		width: 30%;
+		margin-right: 5%;
+	}
+
+	#currency {
+		margin-right: 0;
+	}
+
+	/* Parts */
+
+	#parts_section {
+		/* for ie */
+		/*display: table;*/
+	}
+
+	#parts {
+		/*overflow-y: auto;
+		max-height: 82px;*/
+	}
+
+	/*#parts_nav,
+	#top,
+	#bottom {
+		display: none;
+	}*/
+
+	#parts #power {
+		float: left;
+	}
+
+	#parts #cooling {
+		display: inline;
+	}
+
+	#parts #power > menu,
+	#parts #cooling > menu {
+		margin-right: 8px;
+		display: table-cell;
+		vertical-align: bottom;
+		float: none;
+	}
+
+	#main #parts #cells {
+		max-width: 216px;
+	}
+
+	#parts button {
+		display: block;
+	}
+
+	#main.part_active #parts button {
+		display: none;
+	}
+
+	#main.part_active #parts button.part_active {
+		display: block;
+	}
+
+	#cells button {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	#parts #cells .part {
+		margin: 0 4px 0 0;
+	}
+
+	/*#parts_section .cells .part.unaffordable + .locked {
+		display: block;
+	}*/
+
+	#main #primary {
+		padding-left: 46px;
+	}
+
+	#main #nav {
+		position: static;
+	}
+
+	/* Touch? */
+	#main #tooltip_nav {
+		height: auto;
+		padding: 0;
+	}
+
+	#main #tooltip_controls {
+		display: block;
+	}
+
+	#main #nav {
+		/*padding: 8px;*/
+	}
+
+	#main #game_nav button {
+		margin-bottom: 4px;
+	}
+
+	#main.tooltip_showing #nav {
+		display: block;
+	}
+
+	#main.tooltip_showing #tooltip {
+		position: fixed;
+		z-index: 7;
+		left: 0;
+		top: 60px;
+		right: 0;
+		border-top: 0;
+		border: 12px solid #eee;
+		border-image: url("../img/panel_border.png") 12 12 stretch;
+		background-color: #485667;
+		background-clip: padding-box;
+		height: auto;
+		padding: 2px;
+	}
+
+	#main.part_active.tooltip_showing #tooltip {
+		left: 46px;
+	}
+
+	#main #controls_nav,
+	#main #pages_nav {
+		position: static;
+	}
+
+	#main #controls_nav button {
+		clear: none;
+		float: none;
+	}
+
+	#main #game_nav {
+		display: none;
+	}
+
+	#main #pages_nav,
+	#main #game_nav,
+	#main #controls_nav {
+		margin-bottom: 2px;
+	}
+
+	#main #tooltip_nav {
+		border: 2px solid #eee;
+		border-image: url("../img/medium_panel.png") 2 2 stretch;
+		padding: 10px 6px 6px 12px;
+		position: relative;
+	}
+
+	#main #more_nav {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: block;
+	}
+
+	#main.nav_more #nav_more,
+	#main #nav_less {
+		display: none;
+	}
+
+	#main.nav_more #nav_less,
+	#main.nav_more #game_nav {
+		display: block;
+	}
+
+	/* /Touch? */
+
+	#tooltip_info {
+		text-align: left;
+		padding: 0 20px 0 2px;
+		margin-bottom: .5em;
+	}
+
+	#tooltip_name {
+		display: inline;
+	}
+
+	#tooltip_name:after {
+		content: " - ";
+	}
+
+	#tooltip_description {
+		display: inline;
+	}
+
+	#more_nav button {
+		border-top: 0;
+		border-right: 0;
+		vertical-align: top;
+		padding: 8px 4px 4px 0;
+		font-family: monospace;
+		margin: 0;
+	}
+
+	#main #parts_section,
+	#main #stats_section {
+		border: 12px solid #eee;
+		border-image: url("../img/panel_border.png") 12 12 stretch;
+		border-top: 0;
+	}
+
+	#main #stats_section {
+		position: fixed;
+		z-index: 10;
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding: 0;
+		border-left: 0;
+		border-right: 0;
+	}
+
+	#stats_section button {
+		font-size: .75em;
+	}
+
+	#heat_indicator,
+	#power_indicator {
+		border-top-width: 0;
+		padding: 2px 0;
+	}
+
+	#heat,
+	#power_section {
+		margin-bottom: 0;
+	}
+
+	#main #parts_section {
+		padding: 12px 2px 2px 2px;
+	}
+
+	#main.part_active #parts_section {
+		position: fixed;
+		z-index: 8;
+		left: -12px;
+		top: 52px;
+		padding: 11px 0 0 4px;
+	}
+
+	#main.part_active #power > menu,
+	#main.part_active #cooling > menu {
+		margin: 0;
+	}
+
+	#main.part_active #parts .part {
+		margin: 0;
+	}
+
+	#power_section,
+	#currency,
+	#heat {
+		max-width: none;
+		width: 29.5%;
+	}
+
+	#power_section,
+	#heat {
+		margin-right: 1%;
+		margin-left: 1%;
+		padding-left: 1em;
+		position: relative;
+	}
+
+	#stats_section .heading {
+		-ms-transform: rotate(-90deg); /* IE 9 */
+		-ms-transform-origin: 16% 45%; /* IE 9 */
+		-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+		-webkit-transform-origin: 16% 45%; /* Chrome, Safari, Opera */
+		transform: rotate(-90deg);
+		transform-origin: 16% 45%;
+		position: absolute;
+		line-height: 1em;
+		left: 0;
+		bottom: 0;
+	}
+
+	#stats_section .heading:after,
+	#stats_section .heading .current {
+		display: none;
+	}
+
+	#currency {
+		margin-left: 1%;
+	}
+
+	#more_stats {
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	#more_stats button {
+		border-top: 0;
+		border-right: 0;
+		vertical-align: top;
+		padding: 8px 4px 4px 0;
+		font-family: monospace;
+	}
+
+	/* Hide more stats */
+	#hide_more_stats,
+	#money_per_tick_wrapper,
+	#power_per_tick_wrapper,
+	#heat_per_tick_wrapper {
+		display: none;
+	}
+
+	/* Show more stats */
+	#main.show_more_stats {
+		padding-top: 70px;
+	}
+
+	#main.part_active.show_more_stats #parts_section {
+		top: 70px;
+	}
+
+	#main.show_more_stats #hide_more_stats,
+	#main.show_more_stats #money_per_tick_wrapper,
+	#main.show_more_stats #power_per_tick_wrapper,
+	#main.show_more_stats #heat_per_tick_wrapper {
+		display: block;
+	}
+
+	#main.show_more_stats #show_more_stats {
+		display: none;
+	}
+
+	#main.show_more_stats #heat_indicator,
+	#main.show_more_stats #power_indicator {
+		border-top-width: 1px;
+	}
+}
