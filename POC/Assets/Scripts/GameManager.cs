@@ -86,4 +86,7 @@ public class GameManager : MonoBehaviour {
         planetIndex++;
     }
 
+    public static List<Planet> GetPlanetsRef() {
+        return Instance._planets;
+    }
 }
