@@ -90,3 +90,21 @@ public class GameManager : MonoBehaviour {
         return Instance._planets;
     }
 }
+
+
+
+/*
+ * player has one to many ships
+ * ships have one cargo hold
+ * 	- Cargo Hold has:
+ * 		- Max Capacity (u)
+ * 		- Current Capacity
+ * 		- 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */

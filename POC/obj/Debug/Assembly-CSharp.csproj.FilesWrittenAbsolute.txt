@@ -1,0 +1,17 @@
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/meggielou123/traderouteidle/POC/obj/Debug/Assembly-CSharp.dll
+/Users/meggielou123/traderouteidle/POC/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/UnityEngine.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/UnityEditor.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Mono.Cecil.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Unity.DataContract.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/meggielou123/traderouteidle/POC/Temp/bin/Debug/Mono.Cecil.Mdb.dll
