@@ -27,10 +27,10 @@ public class Ship : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if (_toggleBuy != _toggleBuyLastState) {
 			_toggleBuyLastState = _toggleBuy;
 			OnBuy ();
-
 		}
 
 		if (_toggleSell != _toggleSellLastState) {
@@ -39,15 +39,23 @@ public class Ship : MonoBehaviour {
 		}
 
 		if (_previousPlanet != _currentLocation) {
-			_previousPlanet = _currentLocation;
-			transform.position = _currentLocation.transform.position;
+
+			float step = _speed * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, _currentLocation.transform.position, step);
+
+			if(Vector3.Distance(transform.position, _currentLocation.transform.position) < .01f)
+				_previousPlanet = _currentLocation;
+
 		}
 	}
 
 	private void OnBuy(){
-		//check to make sure we have enough money
 
-		//TODO: make sure we can store product before buying it!
+		if ((_buyAmount + _hold._currentInventory) > _hold._maxCargoHold) {
+			Debug.Log ("No more room in the cargo hold!");
+			return;
+		}
+
 		var contract = _currentLocation.Market.PriceCheck (_buyType, _buyAmount);
 
 		if (Player.CanAfford (contract.TotalPrice ())) {
@@ -69,6 +77,11 @@ public class Ship : MonoBehaviour {
 			Player.DepositMoney (_currentLocation.Market.SellResourcesToMarket (cargo.ResourceType, cargo.NumInventory) );
 		} else
 			Debug.Log ("nothing to sell!");
+	}
+
+
+	public void OnDestinationUpdate(int newPlanetID){
+		_currentLocation = GameManager.GetPlanetByID(newPlanetID);
 	}
 
 }

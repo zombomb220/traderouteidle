@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
+
 public class GameManager : MonoBehaviour {
 
+	
+
     private static GameManager Instance;
+	public static GameEvents Events;
 
     private const int _numPlanets = 3;
     private List<PlanetData> _data;
     private static int _numResources = Enum.GetNames(typeof(Resource.ResourceTypes)).Length;
+
+	private TickManager GameTickManager;
     
     public static Random Rand = new Random();
 
@@ -44,6 +50,9 @@ public class GameManager : MonoBehaviour {
             Instance = this;
         }
 
+
+		Events = new GameEvents();
+
         _planets = new List<Planet>();
     }
 
@@ -71,7 +80,26 @@ public class GameManager : MonoBehaviour {
         _data.Add(new PlanetData(Resource.ResourceTypes.TECHNOLOGY, 95.8f, 92.5f, 100000));
         _data.Add(new PlanetData(Resource.ResourceTypes.TECHNOLOGY, 105.5f, 110.5f, 100000));
 
+
+		GameTickManager = new TickManager (5f, OnTick);
+		
+
     }
+
+	private void Update(){
+
+		GameTickManager.Update();
+	}
+
+
+	private void OnTick(){
+		Events.CallEvent (GameEventNames.Tick, null);
+	}
+
+	public static Planet GetPlanetByID(int id){
+		return Instance._planets.Find (a => a.GetID () == id);
+	}
+
 
     public static void RegisterPlanet(Planet p) {
 
@@ -89,7 +117,53 @@ public class GameManager : MonoBehaviour {
     public static List<Planet> GetPlanetsRef() {
         return Instance._planets;
     }
+
+
+
+
+
+
+
+	public class GameEvents {
+
+		private Dictionary<GameEventNames, List<Action<object>>> _events;
+
+		public GameEvents(){
+			_events = new Dictionary<GameEventNames, List<Action<object>>>();
+		}
+			
+		public void RegisterSubscription(GameEventNames pType, Action<object> _methodToCall) {
+
+			if (_events.ContainsKey (pType)) {
+				_events [pType].Add (_methodToCall);
+			} else {
+				_events.Add (pType, new List<Action<object>> ());
+				_events [pType].Add(_methodToCall);
+			}
+		}
+
+		public void CallEvent(GameEventNames pType, object pData){
+			if(_events.ContainsKey(pType)){
+				foreach (var a in _events[pType]) {
+					a.DynamicInvoke (pData);
+				}
+			}else{
+				throw new UnityException ("Event: " + pType + " does not exist");
+			}
+		}
+
+
+	}
+		
+
 }
+
+public enum GameEventNames{
+	OnPlanetSelected,
+	OnPlanetDestinationUpdate,
+	Tick
+}
+
 
 
 

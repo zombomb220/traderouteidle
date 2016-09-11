@@ -7,6 +7,9 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private float _money = 5;
+	public static float CurrentBalance(){
+		return Instance._money;
+	}
 
     private List<Ship> _myShip;
 
@@ -24,11 +27,19 @@ public class Player : MonoBehaviour {
 
 	    _planets = GameManager.GetPlanetsRef();
 
+		GameManager.Events.RegisterSubscription (GameEventNames.Tick, OnTick);
+		GameManager.Events.RegisterSubscription (GameEventNames.OnPlanetDestinationUpdate, OnPlanetDestinationUpdate);
+
+
 	}
     
-    // Update is called once per frame
-    void Update () {
-	
+	public void OnPlanetDestinationUpdate(object e){
+		var d = (Planet.Events.OnPlanetDestinationUpdate)e;
+		_myShip [0].OnDestinationUpdate (d.planetID);
+	}
+
+	public void OnTick(object e){
+		_money += .1f;
 	}
 
 
