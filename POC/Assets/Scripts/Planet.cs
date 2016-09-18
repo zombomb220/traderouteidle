@@ -42,7 +42,8 @@ public class Planet : ObjectID {
 					//double clicked, send currently selected ship here
 
 					var d = new Events.OnPlanetDestinationUpdate { planetID = GetID()};
-					GameManager.Events.CallEvent (GameEventNames.OnPlanetSelected, d);
+					GameManager.Events.CallEvent (GameEventNames.OnPlanetDestinationUpdate, d);
+
 				} else {
 					//selection updated. 
 					_isSelected = true;

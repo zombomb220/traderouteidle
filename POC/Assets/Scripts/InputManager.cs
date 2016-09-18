@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour {
 	public void CheckClickForObject(Vector2 pos){
 
 		var num = Physics2D.RaycastNonAlloc (pos, Camera.main.transform.forward, hits, Mathf.Infinity);
+
 		if (num > 0) {
 			//Debug.Log ("Hit " + hits [0].transform.name + " number of hits: " + num);
 			var id = hits [0].transform.GetComponent<ObjectID> ().GetID ();
@@ -36,7 +37,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 
-	void OnMouseDown(){
+	void OnMouseDown() {
 		CheckClickForObject(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
 

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 		return Instance._money;
 	}
 
-    private List<Ship> _myShip;
+    [SerializeField] private List<Ship> _myShip;
 
     private List<Planet> _planets;
 
@@ -61,7 +61,6 @@ public class Player : MonoBehaviour {
 
 	public static void DepositMoney(float amount){
 		Instance._money += amount;
-		Debug.Log ("Money = " + Instance._money);
 	}
 
 	public static bool CanAfford(float cost){

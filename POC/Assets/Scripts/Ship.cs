@@ -17,12 +17,21 @@ public class Ship : MonoBehaviour {
 	[SerializeField] int _startingCargoSize = 5;    
 	[SerializeField] private float _speed;
 	[SerializeField] private float _fuelCost;
+    [SerializeField] private float _currentFuel = 100;
+    [SerializeField] private float _maxFuel = 100;
 
 
+    //Temp while only concentrating on single ship
+    private static Ship Instance;
+
+    public static float GetCurrentFuel() {
+        return Instance._currentFuel / Instance._maxFuel;
+    }
 
     // Use this for initialization
     void Start () {
-		_hold = new CargoHold (_startingCargoSize);
+        Instance = this;
+		Instance._hold = new CargoHold (_startingCargoSize);
     }
 	
 	// Update is called once per frame
@@ -41,6 +50,7 @@ public class Ship : MonoBehaviour {
 		if (_previousPlanet != _currentLocation) {
 
 			float step = _speed * Time.deltaTime;
+		    Instance._currentFuel -= step*Instance._fuelCost;
 			transform.position = Vector3.MoveTowards(transform.position, _currentLocation.transform.position, step);
 
 			if(Vector3.Distance(transform.position, _currentLocation.transform.position) < .01f)
