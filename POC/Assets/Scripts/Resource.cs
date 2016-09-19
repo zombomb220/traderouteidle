@@ -8,6 +8,7 @@ public class Resource {
         TECHNOLOGY,
         POWER
     };
+
     public string Name
     {
         get { return _name; }
