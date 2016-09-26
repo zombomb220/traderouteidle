@@ -161,7 +161,9 @@ public class GameManager : MonoBehaviour {
 public enum GameEventNames{
 	OnPlanetSelected,
 	OnPlanetDestinationUpdate,
-	Tick
+	Tick, 
+	OnBttn_MarketBuy,
+	OnBttn_MarketSell
 }
 
 

@@ -19,7 +19,7 @@ public class UI_Resource : MonoBehaviour {
     
     // Use this for initialization
     void Start() {
-
+		
     }
 
     // Update is called once per frame
@@ -44,15 +44,30 @@ public class UI_Resource : MonoBehaviour {
     }
 
     public void OnBuy() {
-
+		
+		GameManager.Events.CallEvent (GameEventNames.OnBttn_MarketBuy, new Events.OnBttnBuySell{
+			rType = _resourceType, 
+			Amt = 1,
+			Price = _buyCost
+		});
 
     }
 
     public void OnSell() {
 
-
+		GameManager.Events.CallEvent (GameEventNames.OnBttn_MarketSell, new Events.OnBttnBuySell{
+			rType = _resourceType,
+			Amt = 1,
+			Price = _sellCost
+		});
     }
 
 
-
+	public class Events {
+		public class OnBttnBuySell{
+			public Resource.ResourceTypes rType;
+			public int Amt;
+			public float Price;
+		}
+	}
 }
