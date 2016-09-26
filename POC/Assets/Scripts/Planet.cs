@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Planet : ObjectID {
 
-    private TextMesh _text;
-	private string _marketText;
+    [SerializeField] private GameObject _uiAnchor;
+
 	private bool _isSelected = false;
+
 
     private PlanetMarket _market;
     public PlanetMarket Market {
@@ -16,19 +18,7 @@ public class Planet : ObjectID {
         Market = new PlanetMarket();
         GameManager.RegisterPlanet(this);
 
-        _marketText = "";
-
-        foreach (var resource in Market.Resources) {
-
-            _marketText += "S: " + resource.SellPrice + "\t\t\tB: " + resource.BuyPrice + " : " + resource.Name + "\n";
-
-        }
-
-        _text = GetComponentInChildren<TextMesh>();
-
 		GameManager.Events.RegisterSubscription (GameEventNames.OnPlanetSelected, OnPlanetSelected);
-
-
     }
 
 
@@ -45,23 +35,33 @@ public class Planet : ObjectID {
 					GameManager.Events.CallEvent (GameEventNames.OnPlanetDestinationUpdate, d);
 
 				} else {
-					//selection updated. 
-					_isSelected = true;
-					_text.text = _marketText;
-				}
+                    //selection updated. 
+                    OnSelected(true);
+                    
+                }
 
 
-			} else {
-				_isSelected = false;
-				_text.text = "";
+            } else {
+			    OnSelected(false);
 			}
 		} else {
 			Debug.Log ("Name: " + name + ". Event was null!");
 		}
 	}
 
+    private void OnSelected(bool isSelected) {
+        _isSelected = isSelected;
 
-	public class Events{
+        if (_isSelected) {
+            
+            UIManager.UpdateMarketUI(_uiAnchor.transform.position, _market.Resources);
+        }
+        else {
+           
+        }
+    }
+
+    public class Events{
 		public class OnPlanetSelected {
 			public int planetID;
 		}

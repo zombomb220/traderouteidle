@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class UI_Resource : MonoBehaviour {
 
 
-    [SerializeField] private Text _resourceText;
-    [SerializeField] private Text _buyText;
-    [SerializeField] private Text _sellText;
+    [SerializeField]
+    public Text _resourceText;
+    [SerializeField]
+    public Text _buyText;
+    [SerializeField]
+    public Text _sellText;
 
-    private Resource.ResourceTypes _resourceType;
+    public Resource.ResourceTypes _resourceType;
     private float _buyCost;
     private float _sellCost;
     
