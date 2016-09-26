@@ -21,17 +21,16 @@ public class Ship : MonoBehaviour {
     [SerializeField] private float _maxFuel = 100;
 
 
-    //Temp while only concentrating on single ship
-    private static Ship Instance;
-
-    public static float GetCurrentFuel() {
-        return Instance._currentFuel / Instance._maxFuel;
+    public float GetCurrentFuel() {
+        return _currentFuel / _maxFuel;
     }
 
     // Use this for initialization
     void Start () {
-        Instance = this;
-		Instance._hold = new CargoHold (_startingCargoSize);
+		_hold = new CargoHold (_startingCargoSize);
+        GameManager.Events.RegisterSubscription(GameEventNames.OnBttn_MarketBuy, OnBttn_Buy);
+        GameManager.Events.RegisterSubscription(GameEventNames.OnBttn_MarketSell, OnBttn_Sell);
+
     }
 	
 	// Update is called once per frame
@@ -50,7 +49,7 @@ public class Ship : MonoBehaviour {
 		if (_previousPlanet != _currentLocation) {
 
 			float step = _speed * Time.deltaTime;
-		    Instance._currentFuel -= step*Instance._fuelCost;
+		    _currentFuel -= step*_fuelCost;
 			transform.position = Vector3.MoveTowards(transform.position, _currentLocation.transform.position, step);
 
 			if(Vector3.Distance(transform.position, _currentLocation.transform.position) < .01f)
@@ -59,7 +58,43 @@ public class Ship : MonoBehaviour {
 		}
 	}
 
-	private void OnBuy(){
+    private void OnBttn_Sell(object e) {
+        var cargo = _hold.RetrieveCargo();
+        if (cargo != null) {
+            Player.DepositMoney(_currentLocation.Market.SellResourcesToMarket(cargo.ResourceType, cargo.NumInventory));
+        }
+        else
+            Debug.Log("nothing to sell!");
+    }
+
+    private void OnBttn_Buy(object e) {
+        var d = (UI_Resource.Events.OnBttnBuySell)e;
+
+        if (d != null) {
+
+            if ((d.Amt + _hold._currentInventory) > _hold._maxCargoHold) {
+                Debug.Log("No more room in the cargo hold!");
+                return;
+            }
+
+            var contract = _currentLocation.Market.PriceCheck(d.rType, d.Amt);
+
+            if (Player.CanAfford(contract.TotalPrice())) {
+                _currentLocation.Market.AcquireResourceFromMarket(ref contract);
+                _hold.StoreCargo(contract.rType, contract.orderQty);
+                Player.WithdrawMoney(contract.TotalPrice());
+            }
+            else {
+                Debug.Log("Can't afford that!");
+            }
+        }
+        else
+            throw new UnityException("OnBttn_Buy Error: Event type received was not of type 'OnBttnBuySell'");
+
+    }
+    
+
+    private void OnBuy(){
 
 		if ((_buyAmount + _hold._currentInventory) > _hold._maxCargoHold) {
 			Debug.Log ("No more room in the cargo hold!");

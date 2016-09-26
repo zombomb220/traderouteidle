@@ -19,18 +19,18 @@ public class Resource {
     public ResourceTypes ResourceType { get; private set; }
     private readonly ResourceTypes _resourceType;
 
-    public float SellPrice {
-        get { return _sellPrice; }
-        set { _sellPrice = value; }
+    public float PlanetSellPrice {
+        get { return _planetSellPrice; }
+        set { _planetSellPrice = value; }
     }
-    private float _sellPrice;
+    private float _planetSellPrice;
 
-    public float BuyPrice
+    public float PlanetBuyPrice
     {
-        get { return _buyPrice; }
-        set { _buyPrice = value; }
+        get { return _planetBuyPrice; }
+        set { _planetBuyPrice = value; }
     }
-    private float _buyPrice;
+    private float _planetBuyPrice;
 
     public float StartingPrice
     {
@@ -46,12 +46,12 @@ public class Resource {
     }
     private int _inventory;
 
-    public Resource(ResourceTypes type, float startingPrice, float buyPrice, int startingInventory) {
+    public Resource(ResourceTypes type, float startingPrice, float planetBuyPrice, int startingInventory) {
 
         ResourceType = type;
         Name = type.ToString();
-        SellPrice = StartingPrice = startingPrice;
-        BuyPrice = buyPrice;
+        PlanetSellPrice = StartingPrice = startingPrice;
+        PlanetBuyPrice = planetBuyPrice;
         Inventory = startingInventory;
     }
 

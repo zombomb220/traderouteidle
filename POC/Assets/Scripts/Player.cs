@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 	public static void WithdrawMoney(float amount){
 		if (amount <= Instance._money) {
 			Instance._money -= amount;
-			Debug.Log ("Money = " + Instance._money);
+			Debug.Log ("Bought something for " + amount);
 		} else
 			throw new UnityException ("Shouldn't get this far... Need to make sure to check if player has enough money first before using this method");
 	}

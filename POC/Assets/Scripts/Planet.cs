@@ -36,28 +36,28 @@ public class Planet : ObjectID {
 
 				} else {
                     //selection updated. 
-                    OnSelected(true);
+                    OnSelected(true, e.planetID);
                     
                 }
 
 
             } else {
-			    OnSelected(false);
+			    OnSelected(false, e.planetID);
 			}
 		} else {
 			Debug.Log ("Name: " + name + ". Event was null!");
 		}
 	}
 
-    private void OnSelected(bool isSelected) {
+    private void OnSelected(bool isSelected, int id = -20) {
         _isSelected = isSelected;
 
-        if (_isSelected) {
-            
+        if (_isSelected) {            
             UIManager.UpdateMarketUI(_uiAnchor.transform.position, _market.Resources);
         }
         else {
-           
+            if(id < 0)
+                UIManager.HideMarketUI();
         }
     }
 

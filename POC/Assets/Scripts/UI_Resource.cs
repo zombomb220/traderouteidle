@@ -6,28 +6,13 @@ using UnityEngine.UI;
 public class UI_Resource : MonoBehaviour {
 
 
-    [SerializeField]
-    public Text _resourceText;
-    [SerializeField]
-    public Text _buyText;
-    [SerializeField]
-    public Text _sellText;
+    [SerializeField] private Text _resourceText;
+    [SerializeField] private Text _buyText;
+    [SerializeField] private Text _sellText;
 
     public Resource.ResourceTypes _resourceType;
     private float _buyCost;
     private float _sellCost;
-    
-    // Use this for initialization
-    void Start() {
-		
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-
 
     public void Create(string resourceType) {
         _resourceType = (Resource.ResourceTypes)Enum.Parse(typeof(Resource.ResourceTypes), resourceType);

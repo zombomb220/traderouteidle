@@ -36,7 +36,7 @@ public class PlanetMarket {
         var resource = Resources.Find(n => n.ResourceType == type);
 
         if (resource != null) {
-            return resource.SellPrice * orderQty;
+            return resource.PlanetSellPrice * orderQty;
         }
         
         throw new UnityException("This Market doesn't sell " + type + "!");
@@ -71,7 +71,7 @@ public class PlanetMarket {
 		var resource = Resources.Find(n => n.ResourceType == pType);
 
 		if (resource != null) {
-			return new SaleDetails (orderQty,resource.SellPrice, pType);
+			return new SaleDetails (orderQty,resource.PlanetSellPrice, pType);
 		}
 
 		throw new UnityException("This Market doesn't sell " + pType + "!");
@@ -88,7 +88,7 @@ public class PlanetMarket {
 
         if (resource != null) {
             resource.AddResource(saleQty);
-			return saleQty * resource.BuyPrice;
+			return saleQty * resource.PlanetBuyPrice;
         }
 		else
         	throw new UnityException("This Market doesn't buy " + pType + "!");

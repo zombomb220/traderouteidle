@@ -26,4 +26,8 @@ public class UIManager : MonoBehaviour {
         Instance._marketUI.transform.position = Camera.main.WorldToScreenPoint(pos);
         Instance._marketUI.Show(data);
     }
+
+    public static void HideMarketUI() {
+        Instance._marketUI.Hide();
+    }
 }

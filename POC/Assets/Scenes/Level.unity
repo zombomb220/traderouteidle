@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864a08731657a8e41aa910a4c75ebe05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentlySelectedShip: {fileID: 189486345}
 --- !u!4 &128359971
 Transform:
   m_ObjectHideFlags: 0
@@ -745,7 +746,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1779659344}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.8954334
+  m_Size: 0.89543337
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1025,6 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20181a94c6139334a8710b30080c4bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectedShip: {fileID: 189486345}
 --- !u!114 &1352137563
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class UI_Market : MonoBehaviour {
     [SerializeField] private List<GameObject> _resourcesGameObjects;
     [SerializeField] private List<UI_Resource> _resources;
     [SerializeField] private GameObject _resourcePrefab;
+
+    
     
     void Start () {
         
@@ -34,11 +36,10 @@ public class UI_Market : MonoBehaviour {
         
         for (int i = 0; i < data.Count; i++) {
             var d = data[i];
-
             foreach (var r in _resources) {
                 if (r._resourceType == d.ResourceType) {
-                    r._buyText.text = d.BuyPrice.ToString();
-                    r._sellText.text = d.SellPrice.ToString();
+                    //Buy/Sell is flipped for the player
+                    r.LoadInfo(d.PlanetSellPrice, d.PlanetBuyPrice);
                 }
             }
         }
@@ -47,6 +48,6 @@ public class UI_Market : MonoBehaviour {
     }
 
     public void Hide() {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

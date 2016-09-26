@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour {
     private List<PlanetData> _data;
     private static int _numResources = Enum.GetNames(typeof(Resource.ResourceTypes)).Length;
 
-	private TickManager GameTickManager;
-    
+    [SerializeField] private Ship _currentlySelectedShip;
+
+    private TickManager GameTickManager;
+
     public static Random Rand = new Random();
 
     public struct PlanetData {
@@ -52,8 +54,8 @@ public class GameManager : MonoBehaviour {
 
 
 		Events = new GameEvents();
-
         _planets = new List<Planet>();
+        
     }
 
     void Start() {
@@ -100,6 +102,10 @@ public class GameManager : MonoBehaviour {
 		return Instance._planets.Find (a => a.GetID () == id);
 	}
 
+    public Ship GetCurrentlySelectedShip() {
+
+        return _currentlySelectedShip;
+    }
 
     public static void RegisterPlanet(Planet p) {
 
@@ -117,12 +123,7 @@ public class GameManager : MonoBehaviour {
     public static List<Planet> GetPlanetsRef() {
         return Instance._planets;
     }
-
-
-
-
-
-
+    
 
 	public class GameEvents {
 
@@ -148,12 +149,14 @@ public class GameManager : MonoBehaviour {
 					a.DynamicInvoke (pData);
 				}
 			}else{
-				throw new UnityException ("Event: " + pType + " does not exist");
+				throw new UnityException ("Event: " + pType + " does not have any listeners!");
 			}
 		}
 
 
 	}
+
+    
 		
 
 }
@@ -163,7 +166,8 @@ public enum GameEventNames{
 	OnPlanetDestinationUpdate,
 	Tick, 
 	OnBttn_MarketBuy,
-	OnBttn_MarketSell
+	OnBttn_MarketSell,
+    OnShipSelected
 }
 
 
